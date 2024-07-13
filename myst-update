@@ -1,0 +1,5 @@
+sudo apt-get update
+wget https://github.com/mysteriumnetwork/node/releases/latest/download/myst_linux_amd64.deb
+sudo DEBIAN_FRONTEND=noninteractive dpkg -i --force-depends myst_linux_amd64.deb && sudo apt-get -y --fix-broken install
+rm myst_linux_amd64.deb
+sudo reboot
