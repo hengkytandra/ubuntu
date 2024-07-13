@@ -1,1 +1,1 @@
-sudo renice -n -20 -p $(pgrep honeygain) && sudo renice -n -20 -p $(pgrep myst)
+sudo renice -n -20 -p $(pgrep myst) && sudo renice -n -20 -p $(pgrep honeygain)
