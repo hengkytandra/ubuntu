@@ -1,0 +1,17 @@
+active-services = "scraping,data_transfer,dvpn,wireguard"
+stun-servers = ["stun.l.google.com:19302", "stun1.l.google.com:19302", "stun2.l.google.com:19302", "stun3.l.google.com:19302", "stun4.l.google.com:19302"]
+
+[ether]
+  [ether.client]
+    rpcl2 = ["https://polygon1.mysterium.network/", "https://polygon-rpc.com/"]
+
+[mmn]
+  api-key = "jIs0xWtazKoW7OuSbeEFWIHKWYdsmjlHvdgLN0rn"
+
+[terms]
+  consumer-agreed = true
+  provider-agreed = true
+  version = "0.0.53"
+
+[udp]
+  ports = "56000:56100"
