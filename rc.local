@@ -1,6 +1,0 @@
-#!/bin/sh -e
-
-sudo sysctl -p
-sleep 300 | while ! ps -e | grep honeygain; do true; done && sudo renice -n -20 -p $(pgrep honeygain)
-
-exit 0
