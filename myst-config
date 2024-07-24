@@ -1,7 +1,0 @@
-#!/bin/bash
-
-MYST_PATH="/etc/mysterium-node/config-mainnet.toml"
-sed -i '/active-services.*/ s//active-services = "scraping,data_transfer,dvpn,wireguard"/g' $MYST_PATH
-sed -i '/stun-servers.*/ s//stun-servers = ["stun.l.google.com:19302", "stun1.l.google.com:19302", "stun2.l.google.com:19302", "stun3.l.google.com:19302", "stun4.l.google.com:19302"]/g' $MYST_PATH
-sed -i '/ports.*/ s//ports = "42000:56100"/g' $MYST_PATH
-exit 0
