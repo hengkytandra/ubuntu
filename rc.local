@@ -1,5 +1,0 @@
-#!/bin/sh -e
-
-sudo sysctl -p
-
-exit 0
