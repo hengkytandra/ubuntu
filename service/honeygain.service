@@ -1,0 +1,16 @@
+[Unit]
+Description=honeygain
+Requires=network-online.target
+After=network.target network-online.target
+
+[Service]
+User=root
+Group=root
+EnvironmentFile=/etc/script/login
+ExecStart=/root/.local/bin/honeygain -email "${USER_C}" -pass "${PASS}" -device "${DEVICE}" -tou-accept
+Nice=-20
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
