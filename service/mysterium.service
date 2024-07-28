@@ -1,0 +1,36 @@
+[Unit]
+Description=Server for Mysterium - decentralised VPN Network
+Documentation=https://mysterium.network/
+Requires=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+User=mysterium-node
+Group=mysterium-node
+RuntimeDirectory=mysterium-node
+RuntimeDirectoryMode=0750
+LogsDirectory=mysterium-node
+EnvironmentFile=-/etc/default/mysterium-node
+ExecStartPre=/etc/script/myst-config
+ExecStart=/usr/bin/myst \
+    $CONF_DIR \
+    $SCRIPT_DIR \
+    $DATA_DIR \
+    $RUN_DIR \
+    $DAEMON_OPTS \
+    --ui.features=restart \
+    --auto-reconnect service set value true \
+    --agreed-terms-and-conditions \
+    $SERVICE_OPTS
+KillMode=process
+SendSIGKILL=yes
+Nice=-20
+Restart=always
+RestartSec=5
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=multi-user.target

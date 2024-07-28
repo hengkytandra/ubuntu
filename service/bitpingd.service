@@ -1,0 +1,19 @@
+[Unit]
+Description=Bitping Node
+Requires=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+Environment="SERVICE_MANAGER=true"
+ExecStart=/root/.local/bin/bitpingd run
+Nice=-20
+Restart=always
+RestartSec=5
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=multi-user.target
