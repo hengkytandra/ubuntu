@@ -1,0 +1,16 @@
+[Unit]
+Description=pawns.app
+Requires=network-online.target
+After=network.target network-online.target
+
+[Service]
+User=root
+Group=root
+EnvironmentFile=/etc/script/login
+ExecStart=/root/.local/bin/pawns-cli -email="${USER_B}" -password="${PASS}" -device-name="${DEVICE}" -accept-tos
+Nice=-20
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
