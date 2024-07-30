@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+sudo modprobe nf_conntrack
+sudo sysctl -p
+
+exit 0
