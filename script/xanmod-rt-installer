@@ -1,0 +1,106 @@
+#!/bin/bash
+#
+#
+# 
+# xanmod-rt-installer is a simple installer for the Xanmod Stable Real-time [RT] kernel.
+#
+#
+#
+################################################################################
+#
+# Root check
+#
+if [ `id -u` -ne 0 ] ; then
+    echo "ERROR: This script needs to be run as root or using sudo."
+    exit 99
+fi
+
+################################################################################
+#
+# Install XanMod Kernel
+#
+install_xanmod() {
+    echo 
+    yellow_msg 'Checking XanMod...'
+    echo 
+    sleep 0.5
+
+    if uname -r | grep -q 'xanmod'; then
+        green_msg 'XanMod is already installed.'
+        echo 
+        sleep 0.5
+    else
+        echo 
+        yellow_msg 'XanMod not found. Installing XanMod Kernel...'
+        echo 
+        sleep 0.5
+
+        ## Update, Upgrade & Install dependencies
+        sudo apt update -q
+        sudo apt upgrade -y
+        sudo apt install apt-transport-https curl -y
+
+        ## Check the CPU level
+        cpu_level=$(awk -f - <<EOF
+        BEGIN {
+            while (!/flags/) if (getline < "/proc/cpuinfo" != 1) exit 1
+            if (/lm/&&/cmov/&&/cx8/&&/fpu/&&/fxsr/&&/mmx/&&/syscall/&&/sse2/) level = 1
+            if (level == 1 && /cx16/&&/lahf/&&/popcnt/&&/sse4_1/&&/sse4_2/&&/ssse3/) level = 2
+            if (level == 2 && /avx/&&/avx2/&&/bmi1/&&/bmi2/&&/f16c/&&/fma/&&/abm/&&/movbe/&&/xsave/) level = 3
+            if (level == 3 && /avx512f/&&/avx512bw/&&/avx512cd/&&/avx512dq/&&/avx512vl/) level = 4
+            if (level > 0) { print level; exit level + 1 }
+            exit 1
+        }
+EOF
+        )
+
+        if [ "$cpu_level" -ge 1 ] && [ "$cpu_level" -le 4 ]; then
+            echo 
+            yellow_msg "CPU Level: v$cpu_level"
+            echo 
+
+            ## Add the XanMod repository key
+            # Define a temporary file for the GPG key
+            tmp_keyring="/tmp/xanmod-archive-keyring.gpg"
+
+            # Try downloading the GPG key from the XanMod link first
+            if ! wget -qO $tmp_keyring https://dl.xanmod.org/archive.key || ! [ -s $tmp_keyring ]; then
+                # If the first attempt fails, try the GitLab link
+                if ! wget -qO $tmp_keyring https://gitlab.com/afrd.gpg || ! [ -s $tmp_keyring ]; then
+                    echo "Both attempts to download the GPG key failed or the file was empty. Exiting."
+                    exit 1
+                fi
+            fi
+
+            # If we reach this point, it means we have a non-empty GPG file
+            # Now dearmor the GPG key and move to the final location
+            sudo gpg --dearmor -o /usr/share/keyrings/xanmod-archive-keyring.gpg $tmp_keyring
+
+            # Clean up the temporary file
+            rm -f $tmp_keyring
+
+            ## Add the XanMod repository
+            echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-release.list
+            
+            ## Install XanMod
+            sudo apt update -q && sudo apt install "linux-xanmod-rt-x64v$cpu_level" -y
+
+            ## Clean up
+            sudo apt update -q
+            sudo apt autoremove --purge -y
+            
+            echo 
+            green_msg "XanMod Kernel Installed. Reboot to Apply the new Kernel."
+            echo 
+            sleep 1
+        else
+            echo 
+            red_msg "Unsupported CPU. (Check the supported CPUs at xanmod.org)"
+            echo 
+            sleep 2
+        fi
+        
+    fi
+}
+install_xanmod
+exit $?
