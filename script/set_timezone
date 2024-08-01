@@ -46,8 +46,9 @@ check_if_running_as_root
 sleep 0.5
 ################################################################################
 #
-# Set Time Zone
+# Install dependencies
 #
+sudo apt-get -qq update && sudo apt-get -y -qq install curl jq sudo
 set_timezone() {
     echo
     yellow_msg 'Setting TimeZone based on VPS IP address...'
