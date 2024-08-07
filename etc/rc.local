@@ -1,7 +1,8 @@
 #!/bin/sh -e
 
-sudo mount --bind /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 sudo modprobe nf_conntrack
+sudo modprobe tcp_bbr
+sudo mount --bind /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 sudo sysctl -p
 
 exit 0
