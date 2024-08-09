@@ -6,6 +6,7 @@ kernel.hung_task_timeout_secs = 600
 kernel.msgmax = 65536
 kernel.msgmnb = 65536
 kernel.nmi_watchdog = 0
+kernel.numa_balancing = 0
 kernel.sched_rt_runtime_us = -1
 kernel.shmall = 2097152
 kernel.shmmax = 4294967295
