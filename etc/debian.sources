@@ -1,0 +1,9 @@
+Types: deb deb-src
+URIs: https://deb.debian.org/debian
+Suites: bookworm bookworm-updates bookworm-backports
+Components: main
+
+Types: deb deb-src
+URIs: https://deb.debian.org/debian-security
+Suites: bookworm-security
+Components: main
