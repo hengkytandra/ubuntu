@@ -12,6 +12,7 @@ ExecStart=/root/.local/bin/honeygain -email "${USER_C}" -pass "${PASS}" -device 
 Nice=-20
 Restart=always
 RestartSec=5
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_BROADCAST CAP_NET_RAW CAP_SYS_NICE
 StandardOutput=null
 StandardError=null
 
