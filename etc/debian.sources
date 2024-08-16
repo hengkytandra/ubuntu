@@ -1,9 +1,9 @@
 Types: deb deb-src
 URIs: https://deb.debian.org/debian
-Suites: bookworm bookworm-updates bookworm-backports
-Components: main
+Suites: stable stable-updates stable-backports
+Components: main contrib
 
 Types: deb deb-src
 URIs: https://deb.debian.org/debian-security
-Suites: bookworm-security
-Components: main
+Suites: stable-security
+Components: main contrib
