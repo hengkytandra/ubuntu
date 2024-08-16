@@ -4,5 +4,6 @@ sudo modprobe nf_conntrack
 sudo modprobe tcp_bbr
 sudo mount --bind /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 sudo sysctl -p
+sudo systemctl restart networking
 
 exit 0
