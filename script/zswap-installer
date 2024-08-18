@@ -58,7 +58,7 @@ COMPRESSOR=zstd
 ACCEPT_THRESHOLD_PERCENT=90
 MAX_POOL_PERCENT=20
 SAME_FILLED_PAGES=1
-ZPOOL=zbud
+ZPOOL=z3fold
 #
 # Load configuration file (if it exists)
 #
