@@ -3,6 +3,6 @@
 sudo modprobe nf_conntrack
 sudo mount --bind /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 sudo sysctl -p
-sudo systemctl restart networking
+sudo systemctl restart systemd-networkd.service
 
 exit 0
