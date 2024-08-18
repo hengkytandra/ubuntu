@@ -96,7 +96,7 @@ for i in \$(seq 1 \${NUM_DEVICES}); do
     echo "Setting up /dev/zram\${DEVNUM} using \${COMP_MODE}"
     zramctl -a \${COMP_MODE} -s \${MEM_CHUNK} /dev/zram\${DEVNUM}
     mkswap /dev/zram\${DEVNUM}
-    swapon -p 5 /dev/zram\${DEVNUM}
+    swapon -p 32767 /dev/zram\${DEVNUM}
 done
 EOF
 
