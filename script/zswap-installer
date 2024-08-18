@@ -54,11 +54,11 @@ fi
 # Default settings
 #
 ENABLED=1
-COMPRESSOR=zstd
+COMPRESSOR=lz4
 ACCEPT_THRESHOLD_PERCENT=90
 MAX_POOL_PERCENT=20
 SAME_FILLED_PAGES=1
-ZPOOL=z3fold
+ZPOOL=zbud
 #
 # Load configuration file (if it exists)
 #
@@ -124,7 +124,7 @@ ENABLED=1
 # Compression method
 #   lzo lzo-rle lz4 zstd
 #
-COMPRESSOR=zstd
+COMPRESSOR=lz4
 #
 # If pool utilisation is over this percentage, refuse to take new pages
 # (prevents swap thrashing which can kill performance)
@@ -143,7 +143,7 @@ SAME_FILLED_PAGES=1
 # ZSwap makes use of zpool for the managing the compressed memory pool.
 #   zbud z3fold zsmalloc
 #
-ZPOOL=z3fold
+ZPOOL=zbud
 
 EOF
 fi
