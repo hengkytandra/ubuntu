@@ -54,7 +54,7 @@ fi
 # Default settings
 #
 ENABLED=1
-COMPRESSOR=lz4
+COMPRESSOR=zstd
 ACCEPT_THRESHOLD_PERCENT=90
 MAX_POOL_PERCENT=20
 SAME_FILLED_PAGES=1
@@ -124,7 +124,7 @@ ENABLED=1
 # Compression method
 #   lzo lzo-rle lz4 zstd
 #
-COMPRESSOR=lz4
+COMPRESSOR=zstd
 #
 # If pool utilisation is over this percentage, refuse to take new pages
 # (prevents swap thrashing which can kill performance)

@@ -41,7 +41,7 @@ cat << EOF > /usr/bin/zram-start
 #
 ################################################################################
 NUM_DEVICES=1
-COMP_MODE=lz4
+COMP_MODE=zstd
 #
 # Load configuration file (if it exists)
 #
@@ -141,7 +141,7 @@ NUM_DEVICES=1
 # Compression method
 #   lzo lzo-rle lz4 lz4hc 842 zstd
 #
-COMP_MODE=lz4
+COMP_MODE=zstd
 #
 # Fixed memory to allocate
 #   If 0 then 1/2 system RAM is used
