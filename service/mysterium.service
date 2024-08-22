@@ -6,7 +6,7 @@ After=network.target network-online.target
 
 [Service]
 Type=simple
-User=root
+User=mysterium-node
 Group=mysterium-node
 RuntimeDirectory=mysterium-node
 RuntimeDirectoryMode=0750
