@@ -6,7 +6,7 @@ stun-servers = ["stun.l.google.com:19302", "stun1.l.google.com:19302", "stun2.l.
     rpcl2 = ["https://polygon1.mysterium.network/", "https://polygon-rpc.com/"]
 
 [mmn]
-  api-key = ""
+  api-key = "9pOocGcPmZnSVhnEs4NsdzYBZv75ZE2mZFghTJ3r"
 
 [node]
   version = ""
@@ -20,5 +20,5 @@ stun-servers = ["stun.l.google.com:19302", "stun1.l.google.com:19302", "stun2.l.
   ports = "42000:56100"
 
 [ui-terms]
-  agreedat = ""
+  agreedat = "1945-08-17"
   agreedtoversion = "0.0.53"
