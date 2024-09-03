@@ -1,4 +1,0 @@
-0 0 * * * sleep $[(RANDOM % 3600) + 60] && apt-upgrade
-0 12 * * * sleep $[(RANDOM % 3600) + 60] && /sbin/shutdown -r now
-0 18 * * * sleep $[(RANDOM % 3600) + 60] && python3 ./HoneygainAutoClaim/main.py
-0 6 * * 6 sleep $[(RANDOM % 3600) + 60] && myst-update
